@@ -6,10 +6,13 @@
 package com.pb.apb.ws.config;
 
 import java.util.List;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -22,7 +25,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @author Новомлинов Александр
  */
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.pb.apb.ws.config.spring"})
+@ComponentScan(basePackages = {"com.pb.apb.ws.config"})
 //@Import(WsConfig.class)
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
@@ -32,13 +35,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/resources/").setCachePeriod(31556926);
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
-//    @Bean
-//    public ViewResolver addViewResolverResolver(){
-//        InternalResourceViewResolver res = new InternalResourceViewResolver();
-//        res.setPrefix("WEB-INF/jsp");
-//        res.setSuffix(".jsp");
-//        return res;
-//    }
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -48,14 +44,21 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         registry.viewResolver(res);
     }
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //super.configureMessageConverters(converters); //To change body of generated methods, choose Tools | Templates.
-    }
+////    @Override
+////    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+////        //super.configureMessageConverters(converters); //To change body of generated methods, choose Tools | Templates.
+////    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
+    
+    @Bean(name = "taskScheduler")
+    public TaskScheduler getScheduler(){
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(10);
+        return taskScheduler;
+    }
 }

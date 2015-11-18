@@ -6,7 +6,10 @@
 package com.pb.apb.ws.config.spring.controllers;
 
 import java.time.ZonedDateTime;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -15,15 +18,20 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class WsController {
-    
 
-    @MessageMapping("/greeting") 
-    public String handle(String greeting) {
-        return "[" + ZonedDateTime.now() + ": " + greeting;
+    @SubscribeMapping("/greeting")
+    public String greeting() {
+        return "[" + ZonedDateTime.now() + ": hello]";
     }
-    
-    @MessageMapping("/portfolio") 
-    public String info(String greeting) {
-        return "[" + ZonedDateTime.now() + ": " + greeting;
+
+    @SubscribeMapping("/topic/inf")
+    public String info() {
+        return "[" + ZonedDateTime.now() + ": !!!!]" ;
+    }
+
+    @MessageExceptionHandler
+    @SendToUser("/queue/errors")
+    public String handleException(Throwable exception) {
+        return exception.getMessage();
     }
 }
