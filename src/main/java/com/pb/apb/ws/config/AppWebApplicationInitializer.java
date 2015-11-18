@@ -6,6 +6,7 @@
 package com.pb.apb.ws.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletRegistration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -23,7 +24,8 @@ public class AppWebApplicationInitializer extends
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { SpringConfig.class };
+		//return new Class[] { SpringConfig.class };
+                return new Class[] { WsConfig.class };
 	}
 
 	@Override
@@ -31,8 +33,13 @@ public class AppWebApplicationInitializer extends
 		return new String[] { "/" };
 	}
 
-	@Override
-	protected Filter[] getServletFilters() {
-		return new Filter[] { new HiddenHttpMethodFilter() };
+//	@Override
+//	protected Filter[] getServletFilters() {
+//		return new Filter[] { new HiddenHttpMethodFilter() };
+//	}
+        
+        @Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		registration.setInitParameter("dispatchOptionsRequest", "true");
 	}
 }
