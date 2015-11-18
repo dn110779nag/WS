@@ -22,7 +22,7 @@ public class WsController {
         return "[" + ZonedDateTime.now() + ": " + greeting;
     }
     
-    @MessageMapping("/portfolio/info") 
+    @MessageMapping("/portfolio") 
     public String info(String greeting) {
         return "[" + ZonedDateTime.now() + ": " + greeting;
     }

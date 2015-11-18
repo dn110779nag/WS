@@ -35,7 +35,7 @@ public class WsConfig implements WebSocketConfigurer, WebSocketMessageBrokerConf
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(myHandler(), "/myHandler").withSockJS();
+        //registry.addHandler(myHandler(), "/myHandler").withSockJS();
     }
 
     @Bean
@@ -88,8 +88,8 @@ public class WsConfig implements WebSocketConfigurer, WebSocketMessageBrokerConf
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/WS");
+        registry.enableSimpleBroker("/topic", "/queue");
     }
 
 }
