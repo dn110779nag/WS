@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pb.apb.ws.config.spring.services;
+package com.pb.apb.ws.spring.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -20,7 +20,7 @@ public class WsService {
     @Autowired
     private SimpMessagingTemplate  messagingTemplate;
 
-    @Scheduled(fixedDelay = 1500)
+    //@Scheduled(fixedDelay = 1500)
     public void sendTradeNotifications() {
         messagingTemplate.convertAndSend("/queue/errors", new Ping());
     }

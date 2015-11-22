@@ -24,8 +24,8 @@ public class AppWebApplicationInitializer extends
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		//return new Class[] { SpringConfig.class };
-                return new Class[] { WsConfig.class };
+		return new Class[] { SpringConfig.class };
+                //return new Class[] { WsConfig.class };
 	}
 
 	@Override

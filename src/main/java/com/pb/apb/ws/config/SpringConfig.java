@@ -25,8 +25,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @author Новомлинов Александр
  */
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.pb.apb.ws.config"})
-//@Import(WsConfig.class)
+@ComponentScan(basePackages = {"com.pb.apb.ws.spring"})
+@Import(WsConfig.class)
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
     @Override

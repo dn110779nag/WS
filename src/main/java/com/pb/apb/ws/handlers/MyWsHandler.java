@@ -1,4 +1,4 @@
-package com.pb.apb.ws.config.ws;
+package com.pb.apb.ws.handlers;
 
 
 import org.springframework.web.socket.TextMessage;

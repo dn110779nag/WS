@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pb.apb.ws.config.spring.services;
+package com.pb.apb.ws.spring.services;
 
 import java.util.Date;
 

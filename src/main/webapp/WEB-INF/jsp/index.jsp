@@ -17,17 +17,17 @@
             var stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 console.log('!!!Connected ' + frame);
-                stompClient.subscribe("/app/greeting", function (message) {
+                stompClient.subscribe("/app/ping", function (message) {
                     console.log(JSON.parse(message.body));
                 });
                 
-                stompClient.subscribe("/topic/inf", function (message) {
-                    console.log(message.body);
-                });
+//                stompClient.subscribe("/topic/inf", function (message) {
+//                    console.log(message.body);
+//                });
                 
-                stompClient.subscribe("/queue/errors", function (message) {
-                    console.log(JSON.parse(message.body));
-                });
+//                stompClient.subscribe("/queue/errors", function (message) {
+//                    console.log(JSON.parse(message.body));
+//                });
             }, function (error) {
                 console.log("STOMP protocol error " + error);
             });
