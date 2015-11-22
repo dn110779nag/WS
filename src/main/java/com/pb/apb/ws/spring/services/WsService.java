@@ -20,7 +20,7 @@ public class WsService {
     @Autowired
     private SimpMessagingTemplate  messagingTemplate;
 
-    //@Scheduled(fixedDelay = 1500)
+//    @Scheduled(fixedDelay = 3500)
     public void sendTradeNotifications() {
         messagingTemplate.convertAndSend("/queue/errors", new Ping());
     }

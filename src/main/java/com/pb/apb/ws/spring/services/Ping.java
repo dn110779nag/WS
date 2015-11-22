@@ -13,6 +13,9 @@ import java.util.Date;
  */
 public class Ping {
     private Date date;
+    private String msg;
+    
+    
 
     public Date getDate() {
         return date;
@@ -24,6 +27,24 @@ public class Ping {
 
     public Ping() {
         this.date = new Date();
+    }
+
+    public Ping(String msg) {
+        super();
+        this.msg = msg;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    @Override
+    public String toString() {
+        return "Ping{" + "date=" + date + ", msg=" + msg + '}';
     }
     
     

@@ -21,21 +21,25 @@
                     console.log(JSON.parse(message.body));
                 });
                 
-//                stompClient.subscribe("/topic/inf", function (message) {
-//                    console.log(message.body);
-//                });
+                stompClient.subscribe("/topic/inf", function (message) {
+                    console.log(message.body);
+                });
                 
-//                stompClient.subscribe("/queue/errors", function (message) {
-//                    console.log(JSON.parse(message.body));
-//                });
+                stompClient.subscribe("/queue/errors", function (message) {
+                    console.log(JSON.parse(message.body));
+                });
             }, function (error) {
                 console.log("STOMP protocol error " + error);
             });
 
-
+            function ping(){
+                stompClient.send("/app/msg", {}, JSON.stringify({msg:'test'}));
+            }
         </script>
     </head>
     <body>
         <h1>Hello World from Spring!</h1>
+        <input type="button" onclick="ping()" value="ping"/>
+        
     </body>
 </html>
